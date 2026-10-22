@@ -1,0 +1,18 @@
+# Autostart on the Raspberry Pi.
+#   sudo cp deploy/drowsiness.service /etc/systemd/system/
+#   (edit User= and paths if your username is not "pi")
+#   sudo systemctl daemon-reload && sudo systemctl enable --now drowsiness
+#   journalctl -u drowsiness -f        # live output
+[Unit]
+Description=Driver Drowsiness Monitor
+After=multi-user.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/drowsiness_guard
+ExecStart=/home/pi/drowsiness_guard/.venv/bin/python main.py --no-display --config tuned.json --port /dev/ttyACM0 --log logs/last_run.csv
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

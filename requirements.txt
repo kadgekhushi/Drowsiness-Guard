@@ -1,0 +1,9 @@
+# Runtime (laptop or Raspberry Pi 64-bit OS, Python 3.9-3.11 recommended)
+mediapipe==0.10.14
+opencv-python
+numpy<2
+pyserial
+# Tuning / analysis
+scikit-learn
+pandas
+matplotlib
